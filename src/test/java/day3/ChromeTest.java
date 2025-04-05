@@ -14,6 +14,44 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 public class ChromeTest {
+
+    @Test
+    void openBrowserWithDefaultMode(){
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://www.selenium.dev/");
+        Assert.assertEquals(driver.getTitle(),"Selenium");
+        driver.quit();
+    }
+
+    @Test
+    void openBrowserWithHeadlessMode(){
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless=new");
+
+        WebDriver driver = new ChromeDriver(chromeOptions);
+        driver.get("https://www.selenium.dev/");
+        Assert.assertEquals(driver.getTitle(),"Selenium");
+        driver.quit();
+    }
+
+    @Test
+    void openBrowserWithMobileViewMode(){
+        Map<String, Object> deviceMetrics = new HashMap<>();
+        deviceMetrics.put("width", 344);
+        deviceMetrics.put("height", 882);
+        Map<String, Object> mobileEmulation = new HashMap<>();
+        mobileEmulation.put("deviceMetrics", deviceMetrics);
+
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.setExperimentalOption("mobileEmulation", mobileEmulation);
+
+        WebDriver driver = new ChromeDriver(chromeOptions);
+        driver.get("https://www.selenium.dev/");
+        Assert.assertEquals(driver.getTitle(),"Selenium");
+        driver.quit();
+    }
+
+
     @Test
     void interceptionNetwork(){
         WebDriver driver = new ChromeDriver();
