@@ -28,4 +28,5 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Run test
-        run: mvn test -Dtestplan=testng.xml
+        run: mvn test -DsuiteXmlFile=testng.xml
+
