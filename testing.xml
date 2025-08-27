@@ -1,0 +1,8 @@
+<suite name="checkboxtest">
+    <test name="checkboxtest">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="tests.CheckboxesTest"/>
+        </classes>
+    </test>
+</suite>
